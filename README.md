@@ -1,2 +1,2 @@
-Learn-C-The-Hard-Way-Exercise
-=============================
+# Learn C The Hard Way Exercise
+
