@@ -43,3 +43,21 @@ Here are some examples:
     clang: error: linker command failed with exit code 1 (use -v to see invocation)
     make: *** [ex1] Error 1
     ```
+    
+### Print out 5 more lines of text or something more complex than hello world.
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    puts("Hello world.");
+    puts("Are you ok?");
+    puts("I'm fine.");
+    puts("My name is \"Tom\".");
+    puts("\n");
+    puts("\tThis is a cat.");
+    return 0;
+}
+```
+### Run man 3 puts and read about this function and many others.
+The function puts() writes the string s, and a terminating newline character, to the stream stdout, it returns a nonnegative integer on success and EOF on error.
