@@ -11,14 +11,11 @@ clean:
 	rm -rf ex1 ex1.dSYM
 ```
 ### Read man make to find out more information on how to run it.
-You can run `make` command with more options, here are some examples:  
-1. Use a file as a makefile.
-
-    ```
-    $ cp Makefile myMakefile
-    $ make -f myMakefile clean
-    rm -rf ex1 ex1.dSYM
-    $ make -f myMakefile ex1
-    cc -Wall -g    ex1.c   -o ex1
-    ```
-2. 
+We can use a file as a makefile.
+```
+$ cp Makefile myMakefile
+$ make -f myMakefile clean
+rm -rf ex1 ex1.dSYM
+$ make -f myMakefile ex1
+cc -Wall -g    ex1.c   -o ex1
+```
