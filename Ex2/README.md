@@ -50,6 +50,7 @@ We can run `make` command with more options, here are some examples:
     $ make -I dir ex1
     cc -Wall -g    ex1.c   -o ex1
     ```
+
 ### Read man cc to find out more information on what the flags -Wall and -g do.
 #### -Wall
 ```
