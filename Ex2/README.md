@@ -109,3 +109,32 @@ The following options are useful when GCC is generated with the
 capability for more than one debugging format.
 ```
 ### Research Makefiles online and see if you can improve this one even more.
+We can add some comments:
+```
+# Tell the compiler to report all warnings 
+# and produce debugging information in the operating system's native format
+CFLAGS = -Wall -g
+
+clean:
+	rm -rf ex1 ex1.dSYM
+```
+Or use variables:
+```
+FILES2DELETE = ex1 ex1.dSYM
+CFLAGS = -Wall -g
+
+clean:
+	rm -rf $(FILES2DELETE)
+```
+### Find a Makefile in another C project and try to understand what it's doing.
+Here is a [Makefile example](http://www.delorie.com/djgpp/doc/ug/larger/makefiles.html):
+```
+main.exe : main.o foo.o
+	gcc main.o foo.o -o main.exe
+
+main.o : main.c
+	gcc -c main.c
+
+foo.o : foo.c
+	gcc -c foo.c
+```
