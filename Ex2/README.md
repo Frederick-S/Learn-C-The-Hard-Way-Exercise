@@ -138,3 +138,11 @@ main.o : main.c
 foo.o : foo.c
 	gcc -c foo.c
 ```
+When we run `make`, it first meets `main.exe`, so it will try to make `main.exe`. And `main.exe` relys on `main.o`, `foo.o`, so in order to make `main.exe`, it will run the command `gcc main.o foo.o -o main.exe` to make `main.exe` from the dependencies.
+
+On the other hand, `main.o` relys on `main.c`, so in order to make `main.o`, it will run the command `gcc -c main.c`. At last, we will see three commands the first time we call `make`:
+```
+gcc -c main.c
+gcc -c foo.c
+gcc main.o foo.o -o main.exe
+```
