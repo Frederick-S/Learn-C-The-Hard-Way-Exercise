@@ -33,3 +33,17 @@
     ```
 
 ### Run man 3 printf and read about the other '%' format characters you can use. These should look familiar if you used them in other languages (printf is where they come from).
+1. d, i
+
+    ```
+    The int argument is converted to signed decimal notation. The precision, if any, gives the minimum number of digits
+    that must appear; if the converted value requires fewer digits, it is padded on the left with zeros. The default
+    precision is 1. When 0 is printed with an explicit precision 0, the output is empty.
+    ```
+
+    ```c
+    printf("%d", 100);    // 100
+    printf("%.10d", 100); // 0000000100
+    ```
+    
+2. o, u, x, X
