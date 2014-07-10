@@ -110,3 +110,25 @@ Here are some conversion specifiers:
     printf("%e\n", 0.123456);   // 1.234560e-01
     printf("%g\n", 0.123456);   // 0.123456
     ```
+
+### Add ex3 to your Makefile's all list. Use this to make clean all and build all your exercises so far.
+
+```
+CFLAGS = -Wall -g
+
+all: ex1 ex3
+
+clean:
+    rm -rf ex1 ex1.dSYM
+```
+
+### Add ex3 to your Makefile's clean list as well. Now use make clean will remove it when you need to.
+
+```
+CFLAGS = -Wall -g
+
+all: ex1 ex3
+
+clean:
+    rm -rf ex1 ex1.dSYM ex3 ex3.dSYM
+```
