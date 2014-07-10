@@ -1,4 +1,4 @@
-# Learn C The Hard Way Exercise
+# Learn C The Hard Way
 
 * [Exercise 1: Dust Off That Compiler](Ex1)
 * [Exercise 2: Make Is Your Python Now](Ex2)
