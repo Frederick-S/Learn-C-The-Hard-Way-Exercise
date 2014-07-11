@@ -1,6 +1,6 @@
 # Exercise 4: Introducing Valgrind
 ## Installing Valgrind
-I ran into some errors in this step:
+I ran into some errors when I ran `./configure`:
 
 1. Linux kernel version is not supported
 
@@ -8,6 +8,7 @@ I ran into some errors in this step:
     checking for the kernel version... unsupported (3.13.0-24-generic)
     configure: error: Valgrind works on kernels 2.4, 2.6
     ```
+    Then I downloaded `valgrind-3.9.0` to fix it.
 2. Unsupported glibc version
 
   I downloaded `valgrind-3.9.0` to re-configure, then I met another error:
