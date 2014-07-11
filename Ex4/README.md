@@ -11,14 +11,14 @@ I ran into some errors when I ran `./configure`:
     Then I downloaded `valgrind-3.9.0` to fix it.
 2. Unsupported glibc version
 
-  I downloaded `valgrind-3.9.0` to re-configure, then I met another error:
+    I downloaded `valgrind-3.9.0` to re-configure, then I met another error:
 
     ```
     checking the GLIBC_VERSION version... unsupported version 2.19
     configure: error: Valgrind requires glibc version 2.2 - 2.17
     ```
   
-  After Google, I found a solution [here](http://stackoverflow.com/questions/10518734/valgrind-doesnt-accept-newest-version-of-glibc), add the following code in `configure` file (before the line with `darwin)`):
+    After Google, I found a solution [here](http://stackoverflow.com/questions/10518734/valgrind-doesnt-accept-newest-version-of-glibc), add the following code in `configure` file (before the line with `darwin)`):
 
     ```
      2.19)
