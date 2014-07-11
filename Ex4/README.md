@@ -62,3 +62,46 @@ valgrind:  Cannot continue -- exiting now.  Sorry.
 Luckily, it gives us 2 possible fixes, so I ran `sudo apt-get install libc6-dbg` to install the package, and it worked.
 ## Extra Credit
 ### Fix this program using Valgrind and the compiler as your guide.
+```c
+#include <stdio.h>
+
+int main()
+{
+    int age = 10;
+    int height = 72;
+
+    printf("I am %d years old.\n", age);
+    printf("I am %d inches tall.\n", height);
+
+    return 0;
+}
+```
+
+And run `valgrind ./ex4`:
+```
+==17625== Memcheck, a memory error detector
+==17625== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==17625== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==17625== Command: ./ex4
+==17625==
+I am 10 years old.
+I am 72 inches tall.
+==17625==
+==17625== HEAP SUMMARY:
+==17625==     in use at exit: 0 bytes in 0 blocks
+==17625==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17625==
+==17625== All heap blocks were freed -- no leaks are possible
+==17625==
+==17625== For counts of detected and suppressed errors, rerun with: -v
+==17625== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+```
+### Download other software and build it by hand. Try something you already use but never built for yourself.
+I build `Node.js` on ubuntu:
+```
+git clone git://github.com/joyent/node.git
+cd node
+./configure
+make
+sudo make install
+```
