@@ -97,7 +97,7 @@ I am 72 inches tall.
 ==17625== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 ```
 ### Read up on Valgrind on the internet.
-To be done.
+To do.
 
 ### Download other software and build it by hand. Try something you already use but never built for yourself.
 I build `Node.js` on ubuntu:
@@ -109,4 +109,4 @@ make
 sudo make install
 ```
 ### Look at how the Valgrind source files are laid out in the source directory and read its Makefile.
-To be done.
+To do.
