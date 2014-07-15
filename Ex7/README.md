@@ -1,7 +1,7 @@
 # Exercise 7: More Variables, Some Math
 ## How To Break It
 ### Print out nul_byte variable with %s
-```
+```c
 printf("%s\n", nul_byte);
 ```
 And the warning:
@@ -19,7 +19,7 @@ $ ./ex7
 (null)
 ```
 ### Print out nul_byte variable with %c
-```
+```c
 printf("%c\n", nul_byte);
 ```
 `make` runs successfully:
