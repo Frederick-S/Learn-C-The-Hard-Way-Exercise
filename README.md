@@ -6,3 +6,4 @@
 * [Exercise 4: Introducing Valgrind](Ex4)
 * [Exercise 5: The Structure Of A C Program](Ex5)
 * [Exercise 6: Types Of Variables](Ex6)
+* [Exercise 7: More Variables, Some Math](Ex7)
