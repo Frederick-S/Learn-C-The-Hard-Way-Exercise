@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     printf("That is only a %e portion of the universe.\n", part_of_universe);
 
     // this makes no sense, just a demo of something weird
-    char null_byte = '\0';
-    int care_percentage = bugs * null_byte;
+    char nul_byte = '\0';
+    int care_percentage = bugs * nul_byte;
     printf("Which means you should care %d%%.\n", care_percentage);
 
     return 0;
