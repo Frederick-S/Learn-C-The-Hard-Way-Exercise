@@ -72,7 +72,7 @@ ex6.c:5:5: warning: zero-length gnu_printf format string [-Wformat-zero-length]
      printf("");
      ^
 ```
-You should use this one:
+You can use this one:
 ```c
 #include <stdio.h>
 
