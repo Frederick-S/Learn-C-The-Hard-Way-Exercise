@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     return 0; 
 }
 ```
-But error occurs:
+But warning occurs:
 ```
 $ make ex6
 cc -Wall -g    ex6.c   -o ex6
