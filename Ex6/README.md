@@ -51,6 +51,7 @@ Check [Exercise 3: Formatted Printing](https://github.com/Frederick-S/Learn-C-Th
     ```c
     double number = 1.0e+2;
     ```
+
 ### Try printing an empty string that's just "".
 ```c
 #include <stdio.h>
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
     return 0; 
 }
 ```
-And error occurs:
+But error occurs:
 ```
 $ make ex6
 cc -Wall -g    ex6.c   -o ex6
@@ -71,7 +72,7 @@ ex6.c:5:5: warning: zero-length gnu_printf format string [-Wformat-zero-length]
      printf("");
      ^
 ```
-But this works:
+You should use this one:
 ```c
 #include <stdio.h>
 
