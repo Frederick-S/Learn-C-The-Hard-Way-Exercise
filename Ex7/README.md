@@ -61,3 +61,7 @@ The output:
 $ ./ex7
 The entire universe has 0 bugs.
 ```
+### Go search online to find out what unsigned does.
+`unsigned` means the integer is not negative.
+### Try to explain to yourself (before I do in the next exercise) why you can multiply a char and an int.
+> Char values are encoded as numbers using the ASCII encoding.
