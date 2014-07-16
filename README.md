@@ -7,3 +7,4 @@
 * [Exercise 5: The Structure Of A C Program](Ex5)
 * [Exercise 6: Types Of Variables](Ex6)
 * [Exercise 7: More Variables, Some Math](Ex7)
+* [Exercise 8: Sizes And Arrays](Ex8)
