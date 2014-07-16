@@ -214,3 +214,32 @@ The first char of name is
 ```
 ## Extra Credit
 ### Try assigning to elements in the areas array with areas[0] = 100; and similar.
+```c
+areas[0] = 100;
+areas[1] = 200;
+printf("Now the first area is %d, the 2nd %d.\n", areas[0], areas[1]);
+```
+```
+$ ./ex8
+Now the first area is 100, the 2nd 200.
+```
+### Try assigning to elements of name and full_name.
+```c
+name[0] = 'T';
+full_name[0] = 'T';
+printf("name=\"%s\" and full_name=\"%s\"\n", name, full_name);
+```
+```
+$ ./ex8
+name="Ted" and full_name="Ted A. Shaw"
+```
+### Try setting one element of areas to a character from name.
+```c
+areas[0] = name[0];
+printf("Now the first area is %d.\n", areas[0]);
+```
+```
+$ ./ex8
+Now the first area is 90.
+```
+### Go search online for the different sizes used for integers on different CPUs.
