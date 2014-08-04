@@ -1,0 +1,134 @@
+# Exercise 9: Arrays And Strings
+## How To Break It
+### Get rid of the initializers that setup name.
+```
+==1880== Memcheck, a memory error detector
+==1880== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1880== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1880== Command: ./ex9
+==1880==
+numbers: 0 0 0 0
+==1880== Conditional jump or move depends on uninitialised value(s)
+==1880==    at 0x4EAF631: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:867)
+==1880==    by 0x4E7EC7F: vfprintf (vfprintf.c:1661)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x40061B: main (ex9.c:11)
+==1880==
+==1880== Conditional jump or move depends on uninitialised value(s)
+==1880==    at 0x4EAF65E: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:875)
+==1880==    by 0x4E7EC7F: vfprintf (vfprintf.c:1661)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x40061B: main (ex9.c:11)
+==1880==
+==1880== Conditional jump or move depends on uninitialised value(s)
+==1880==    at 0x4E7EC83: vfprintf (vfprintf.c:1661)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x40061B: main (ex9.c:11)
+==1880==
+==1880== Syscall param write(buf) points to uninitialised byte(s)
+==1880==    at 0x4F20700: __write_nocancel (syscall-template.S:81)
+==1880==    by 0x4EADE42: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1261)
+==1880==    by 0x4EAF31B: _IO_do_write@@GLIBC_2.2.5 (fileops.c:538)
+==1880==    by 0x4EAE4E0: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1332)
+==1880==    by 0x4E7E799: vfprintf (vfprintf.c:1692)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x40061B: main (ex9.c:11)
+==1880==  Address 0x402500b is not stack'd, malloc'd or (recently) free'd
+==1880==
+name each: P  @
+==1880== Conditional jump or move depends on uninitialised value(s)
+==1880==    at 0x4E7FCB3: vfprintf (vfprintf.c:1661)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x400631: main (ex9.c:13)
+==1880==
+==1880== Conditional jump or move depends on uninitialised value(s)
+==1880==    at 0x4EAE551: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1302)
+==1880==    by 0x4E7FC74: vfprintf (vfprintf.c:1661)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x400631: main (ex9.c:13)
+==1880==
+==1880== Conditional jump or move depends on uninitialised value(s)
+==1880==    at 0x4EAE55F: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1302)
+==1880==    by 0x4E7FC74: vfprintf (vfprintf.c:1661)
+==1880==    by 0x4E88748: printf (printf.c:33)
+==1880==    by 0x400631: main (ex9.c:13)
+==1880==
+name: P@
+numbers: 1 2 3 4
+name each: Z e d
+name: Zed
+another: Zed
+another each: Z e d
+==1880==
+==1880== HEAP SUMMARY:
+==1880==     in use at exit: 0 bytes in 0 blocks
+==1880==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1880==
+==1880== All heap blocks were freed -- no leaks are possible
+==1880==
+==1880== For counts of detected and suppressed errors, rerun with: -v
+==1880== Use --track-origins=yes to see where uninitialised values come from
+==1880== ERROR SUMMARY: 21 errors from 7 contexts (suppressed: 1 from 1)
+```
+### Accidentally set name[3] = 'A'; so that there's no terminator.
+```
+==2072== Memcheck, a memory error detector
+==2072== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==2072== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==2072== Command: ./ex9
+==2072==
+numbers: 0 0 0 0
+name each: a
+name: a
+numbers: 1 2 3 4
+name each: Z e d A
+==2072== Conditional jump or move depends on uninitialised value(s)
+==2072==    at 0x4E7FCB3: vfprintf (vfprintf.c:1661)
+==2072==    by 0x4E88748: printf (printf.c:33)
+==2072==    by 0x4006CE: main (ex9.c:33)
+==2072==
+name: ZedA
+another: Zed
+another each: Z e d
+==2072==
+==2072== HEAP SUMMARY:
+==2072==     in use at exit: 0 bytes in 0 blocks
+==2072==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==2072==
+==2072== All heap blocks were freed -- no leaks are possible
+==2072==
+==2072== For counts of detected and suppressed errors, rerun with: -v
+==2072== Use --track-origins=yes to see where uninitialised values come from
+==2072== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
+```
+### Set the initializer to {'a','a','a','a'} so there's too many 'a' characters and no space for the '\0' terminator.
+```
+==2146== Memcheck, a memory error detector
+==2146== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==2146== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==2146== Command: ./ex9
+==2146==
+numbers: 0 0 0 0
+name each: a a a a
+==2146== Conditional jump or move depends on uninitialised value(s)
+==2146==    at 0x4E7FCB3: vfprintf (vfprintf.c:1661)
+==2146==    by 0x4E88748: printf (printf.c:33)
+==2146==    by 0x400641: main (ex9.c:13)
+==2146==
+name: aaaa
+numbers: 1 2 3 4
+name each: Z e d
+name: Zed
+another: Zed
+another each: Z e d
+==2146==
+==2146== HEAP SUMMARY:
+==2146==     in use at exit: 0 bytes in 0 blocks
+==2146==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==2146==
+==2146== All heap blocks were freed -- no leaks are possible
+==2146==
+==2146== For counts of detected and suppressed errors, rerun with: -v
+==2146== Use --track-origins=yes to see where uninitialised values come from
+==2146== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
+```
