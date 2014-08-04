@@ -1,6 +1,6 @@
 # Exercise 8: Sizes And Arrays
 ## How To Break It
-### Get rid of the '\0' at the end of full_name and re-run it. Run it under Valgrind too. Now, move the definition of full_name to the top of main before areas. Try running it under Valgrind a few times and see if you get some new errors. In some cases, you might still get lucky and not catch any errors.
+### Get rid of the '\0' at the end of full\_name and re-run it. Run it under Valgrind too. Now, move the definition of full\_name to the top of main before areas. Try running it under Valgrind a few times and see if you get some new errors. In some cases, you might still get lucky and not catch any errors.
 Run without `Valgrind`:
 ```
 $ ./ex8
@@ -243,3 +243,57 @@ $ ./ex8
 Now the first area is 90.
 ```
 ### Go search online for the different sizes used for integers on different CPUs.
+I ran the following code on `Ubuntu 14.04 x32` and `Ubuntu 14.04 x64`:
+
+`Ubuntu 14.04 x32`:
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    printf("Size of unsigned short: %u\n", sizeof(unsigned short));
+    printf("Size of short: %u\n", sizeof(short));
+    printf("Size of unsigned int: %u\n", sizeof(unsigned int));
+    printf("Size of int: %u\n", sizeof(int));
+    printf("Size of unsigned long: %u\n", sizeof(unsigned long));
+    printf("Size of long: %u\n", sizeof(long));
+
+    return 0;
+}
+```
+Output:
+```
+Size of unsigned short: 2
+Size of short: 2
+Size of unsigned int: 4
+Size of int: 4
+Size of unsigned long: 4
+Size of long: 4
+```
+`Ubuntu 14.04 x64`:
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    printf("Size of unsigned short: %lu\n", sizeof(unsigned short));
+    printf("Size of short: %lu\n", sizeof(short));
+    printf("Size of unsigned int: %lu\n", sizeof(unsigned int));
+    printf("Size of int: %lu\n", sizeof(int));
+    printf("Size of unsigned long: %lu\n", sizeof(unsigned long));
+    printf("Size of long: %lu\n", sizeof(long));
+
+    return 0;
+}
+```
+Output:
+```
+Size of unsigned short: 2
+Size of short: 2
+Size of unsigned int: 4
+Size of int: 4
+Size of unsigned long: 8
+Size of long: 8
+```
+Here are some [posts](http://stackoverflow.com/questions/2331751/does-the-size-of-an-int-depend-on-the-compiler-and-or-processor) about the integer size.
+
