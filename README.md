@@ -8,3 +8,4 @@
 * [Exercise 6: Types Of Variables](Ex6)
 * [Exercise 7: More Variables, Some Math](Ex7)
 * [Exercise 8: Sizes And Arrays](Ex8)
+* [Exercise 9: Arrays And Strings](Ex9)
