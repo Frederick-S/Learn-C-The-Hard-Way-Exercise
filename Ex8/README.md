@@ -295,5 +295,5 @@ Size of int: 4
 Size of unsigned long: 8
 Size of long: 8
 ```
-Here are some [posts](http://stackoverflow.com/questions/2331751/does-the-size-of-an-int-depend-on-the-compiler-and-or-processor) about the integer size.
+Here are some [answers](http://stackoverflow.com/questions/2331751/does-the-size-of-an-int-depend-on-the-compiler-and-or-processor) about the integer size.
 
