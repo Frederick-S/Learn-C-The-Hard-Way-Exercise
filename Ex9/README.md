@@ -132,3 +132,121 @@ another each: Z e d
 ==2146== Use --track-origins=yes to see where uninitialised values come from
 ==2146== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
 ```
+### Set numbers[4] to 5.
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    int numbers[4] = {0};
+
+    // setup the numbers
+    numbers[0] = 1;
+    numbers[1] = 2;
+    numbers[2] = 3;
+    numbers[3] = 4;
+    numbers[4] = 5;
+
+    // then print them out initialized
+    printf("numbers: %d %d %d %d %d\n", numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);
+
+    return 0;
+}
+```
+Run with `Valgrind`:
+```
+==1563== Memcheck, a memory error detector
+==1563== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1563== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1563== Command: ./ex9
+==1563==
+numbers: 1 2 3 4 5
+==1563==
+==1563== HEAP SUMMARY:
+==1563==     in use at exit: 0 bytes in 0 blocks
+==1563==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1563==
+==1563== All heap blocks were freed -- no leaks are possible
+==1563==
+==1563== For counts of detected and suppressed errors, rerun with: -v
+==1563== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+```
+I thought it will throw an index out of range exception, but it didn't. I searched on the internet and found that [C doesn't perform bounds checking](http://stackoverflow.com/questions/671703/array-index-out-of-bound-in-c).
+## Extra Credit
+### Assign the characters into numbers and then use printf to print them a character at a time. What kind of compiler warnings did you get?
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    int numbers[4] = {0};
+
+    // setup the numbers
+    numbers[0] = 'a';
+    numbers[1] = 'b';
+    numbers[2] = 'c';
+    numbers[3] = 'd';
+
+    // then print them out initialized
+    printf("numbers: %d %d %d %d\n", numbers[0], numbers[1], numbers[2], numbers[3]);
+
+    return 0;
+}
+```
+The compiler didn't complain about it.
+Run with `Valgrind`:
+```
+==2038== Memcheck, a memory error detector
+==2038== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==2038== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==2038== Command: ./ex9
+==2038==
+numbers: 97 98 99 100
+==2038==
+==2038== HEAP SUMMARY:
+==2038==     in use at exit: 0 bytes in 0 blocks
+==2038==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==2038==
+==2038== All heap blocks were freed -- no leaks are possible
+==2038==
+==2038== For counts of detected and suppressed errors, rerun with: -v
+==2038== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+```
+### Do the inverse for name, trying to treat it like an array of int and print it out one int at a time. What does Valgrind think of that?
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    char name[4] = {'a'};
+
+    // setup the name
+    name[0] = 100;
+    name[1] = 101;
+    name[2] = 102;
+    name[3] = 103;
+
+    // then print them out initialized
+    printf("name each: %c %c %c %c\n", name[0], name[1], name[2], name[3]);
+
+    return 0;
+}
+```
+Run with `Valgrind`:
+```
+==2446== Memcheck, a memory error detector
+==2446== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==2446== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==2446== Command: ./ex9
+==2446==
+name each: d e f g
+==2446==
+==2446== HEAP SUMMARY:
+==2446==     in use at exit: 0 bytes in 0 blocks
+==2446==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==2446==
+==2446== All heap blocks were freed -- no leaks are possible
+==2446==
+==2446== For counts of detected and suppressed errors, rerun with: -v
+==2446== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+```
