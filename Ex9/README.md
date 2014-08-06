@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
     numbers[3] = 'd';
 
     // then print them out initialized
-    printf("numbers: %d %d %d %d\n", numbers[0], numbers[1], numbers[2], numbers[3]);
+    printf("numbers: %c %c %c %c\n", numbers[0], numbers[1], numbers[2], numbers[3]);
 
     return 0;
 }
@@ -196,21 +196,21 @@ int main(int argc, char *argv[])
 The compiler didn't complain about it.
 Run with `Valgrind`:
 ```
-==2038== Memcheck, a memory error detector
-==2038== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==2038== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
-==2038== Command: ./ex9
-==2038==
-numbers: 97 98 99 100
-==2038==
-==2038== HEAP SUMMARY:
-==2038==     in use at exit: 0 bytes in 0 blocks
-==2038==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==2038==
-==2038== All heap blocks were freed -- no leaks are possible
-==2038==
-==2038== For counts of detected and suppressed errors, rerun with: -v
-==2038== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+==1192== Memcheck, a memory error detector
+==1192== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1192== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1192== Command: ./ex9
+==1192==
+numbers: a b c d
+==1192==
+==1192== HEAP SUMMARY:
+==1192==     in use at exit: 0 bytes in 0 blocks
+==1192==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1192==
+==1192== All heap blocks were freed -- no leaks are possible
+==1192==
+==1192== For counts of detected and suppressed errors, rerun with: -v
+==1192== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 ```
 ### Do the inverse for name, trying to treat it like an array of int and print it out one int at a time. What does Valgrind think of that?
 ```c
@@ -227,26 +227,26 @@ int main(int argc, char *argv[])
     name[3] = 103;
 
     // then print them out initialized
-    printf("name each: %c %c %c %c\n", name[0], name[1], name[2], name[3]);
+    printf("name each: %d %d %d %d\n", name[0], name[1], name[2], name[3]);
 
     return 0;
 }
 ```
 Run with `Valgrind`:
 ```
-==2446== Memcheck, a memory error detector
-==2446== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==2446== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
-==2446== Command: ./ex9
-==2446==
-name each: d e f g
-==2446==
-==2446== HEAP SUMMARY:
-==2446==     in use at exit: 0 bytes in 0 blocks
-==2446==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==2446==
-==2446== All heap blocks were freed -- no leaks are possible
-==2446==
-==2446== For counts of detected and suppressed errors, rerun with: -v
-==2446== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+==1048== Memcheck, a memory error detector
+==1048== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1048== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1048== Command: ./ex9
+==1048==
+name each: 100 101 102 103
+==1048==
+==1048== HEAP SUMMARY:
+==1048==     in use at exit: 0 bytes in 0 blocks
+==1048==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1048==
+==1048== All heap blocks were freed -- no leaks are possible
+==1048==
+==1048== For counts of detected and suppressed errors, rerun with: -v
+==1048== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 ```
