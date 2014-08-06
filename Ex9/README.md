@@ -194,6 +194,7 @@ int main(int argc, char *argv[])
 }
 ```
 The compiler didn't complain about it.
+
 Run with `Valgrind`:
 ```
 ==1192== Memcheck, a memory error detector
