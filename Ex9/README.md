@@ -261,9 +261,78 @@ int main(int argc, char *argv[])
 {
     char name[4] = { 'a', 'b', 'c', 'd' };
     int number = (name[0] << 24) + (name[1] << 16) + (name[2] << 8) + name[3];
+    
     printf("number: %d\n", number);
 
     return 0;
 }
 ```
 ### Convert name to be in the style of another and see if the code keeps working.
+It works to treat `*name` like an array of int and print it out one int at a time.
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    char *name = "abcd";
+    
+    printf("name each: %d %d %d %d\n", name[0], name[1], name[2], name[3]);
+
+    return 0;
+}
+```
+
+Run with `Valgrind`:
+```
+==1338== Memcheck, a memory error detector
+==1338== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1338== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1338== Command: ./ex9
+==1338==
+name each: 97 98 99 100
+==1338==
+==1338== HEAP SUMMARY:
+==1338==     in use at exit: 0 bytes in 0 blocks
+==1338==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1338==
+==1338== All heap blocks were freed -- no leaks are possible
+==1338==
+==1338== For counts of detected and suppressed errors, rerun with: -v
+==1338== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+```
+But it fails to assign int to the element in `*name`:
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    char *name = "abcd";
+    name[0] = 100;
+
+    printf("name each: %d %d %d %d\n", name[0], name[1], name[2], name[3]);
+
+    return 0;
+}
+```
+```
+==1349== Memcheck, a memory error detector
+==1349== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1349== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1349== Command: ./ex9
+==1349==
+==1349==
+==1349== Process terminating with default action of signal 11 (SIGSEGV)
+==1349==  Bad permissions for mapped region at address 0x400624
+==1349==    at 0x400548: main (ex9.c:6)
+==1349==
+==1349== HEAP SUMMARY:
+==1349==     in use at exit: 0 bytes in 0 blocks
+==1349==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1349==
+==1349== All heap blocks were freed -- no leaks are possible
+==1349==
+==1349== For counts of detected and suppressed errors, rerun with: -v
+==1349== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+Segmentation fault (core dumped)
+```
+Under this situation, `"abcd"` is stored in read-only memory, so it's not allowed to modify it.
