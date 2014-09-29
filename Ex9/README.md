@@ -336,3 +336,34 @@ int main(int argc, char *argv[])
 Segmentation fault (core dumped)
 ```
 Under this situation, `"abcd"` is stored in read-only memory, so it's not allowed to modify it.
+
+And use `*name` to represent an integer:
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    char *name = "abcd";
+    int number = (name[0] << 24) + (name[1] << 16) + (name[2] << 8) + name[3];
+    printf("number: %d\n", number);
+
+    return 0;
+}
+```
+```
+==1350== Memcheck, a memory error detector
+==1350== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1350== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==1350== Command: ./ex9
+==1350==
+number: 1633837924
+==1350==
+==1350== HEAP SUMMARY:
+==1350==     in use at exit: 0 bytes in 0 blocks
+==1350==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1350==
+==1350== All heap blocks were freed -- no leaks are possible
+==1350==
+==1350== For counts of detected and suppressed errors, rerun with: -v
+==1350== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+```
