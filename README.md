@@ -9,3 +9,4 @@
 * [Exercise 7: More Variables, Some Math](Ex7)
 * [Exercise 8: Sizes And Arrays](Ex8)
 * [Exercise 9: Arrays And Strings](Ex9)
+* [Exercise 10: Arrays Of Strings, Looping](Ex10)
