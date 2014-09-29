@@ -251,3 +251,19 @@ name each: 100 101 102 103
 ==1048== For counts of detected and suppressed errors, rerun with: -v
 ==1048== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 ```
+### If an array of characters is 4 bytes long, and an integer is 4 bytes long, then can you treat the whole name array like it's just an integer? How might you accomplish this crazy hack?
+Yes. Each character in the 4 bytes array can represent 8-bit in a 32-bit integer. So we use the first element in the array to represent the first 8 bits, and the second element for the second 8 bits...
+And here is the simple code:
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    char name[4] = { 'a', 'b', 'c', 'd' };
+    int number = (name[0] << 24) + (name[1] << 16) + (name[2] << 8) + name[3];
+    printf("number: %d\n", number);
+
+    return 0;
+}
+```
+### Convert name to be in the style of another and see if the code keeps working.
