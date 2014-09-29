@@ -1,7 +1,7 @@
 # Exercise 10: Arrays Of Strings, Looping
 ## How To Break It
 ### Take your favorite other language, and use it to run this program, but with as many command line arguments as possible. See if you can bust it by giving it way too many arguments.
-Here is the python code to run this program:
+Here is some simple python code to run this program:
 ```py
 #!/usr/bin/env python
 
@@ -19,7 +19,7 @@ if len(sys.argv) > 1:
     except Exception, e:
         print e
 ```
-And a simple usage:
+And the usage:
 ```
 $ ./run_ex10.py 5
 arg 1: 0
