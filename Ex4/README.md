@@ -96,9 +96,6 @@ I am 72 inches tall.
 ==17625== For counts of detected and suppressed errors, rerun with: -v
 ==17625== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 ```
-### Read up on Valgrind on the internet.
-To do.
-
 ### Download other software and build it by hand. Try something you already use but never built for yourself.
 I build `Node.js` on ubuntu:
 ```
@@ -108,5 +105,3 @@ cd node
 make
 sudo make install
 ```
-### Look at how the Valgrind source files are laid out in the source directory and read its Makefile.
-To do.
