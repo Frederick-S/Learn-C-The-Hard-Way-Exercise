@@ -57,3 +57,16 @@ state 2: Washington
 state 3: Texas
 state 4: (null)
 ```
+Well, it seems work correctly, state 4 is null. Then I set `num_states` to 10, bad things happened:
+```
+state 0: California
+state 1: Oregon
+state 2: Washington
+state 3: Texas
+state 4: (null)
+state 5: ▒▒财
+state 6: (null)
+state 7: ▒▒▒q
+Segmentation fault (core dumped)
+```
+So we can not trust it. And here is an [answer](http://stackoverflow.com/questions/1239938/c-accesses-an-array-out-of-bounds-gives-no-error-why#1239977) that explains this behaviour.
