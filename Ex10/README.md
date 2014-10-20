@@ -70,3 +70,75 @@ state 7: ▒▒▒q
 Segmentation fault (core dumped)
 ```
 So we can not trust it. And here is an [answer](http://stackoverflow.com/questions/1239938/c-accesses-an-array-out-of-bounds-gives-no-error-why#1239977) that explains this behaviour.
+
+## Extra Credit
+### Figure out what kind of code you can put into the parts of a for-loop.
+The first part is the initialization expression, usually it is used to initialize a loop counter. The second part is a boolean expression, it is evaluated at the beginning of each iteration. And the last part is the increment expression, it is used to increase or decrease the loop counter variable. 
+
+The 3 parts can all be empty and moved into the for-loop body, but it's not a good practice.
+```c
+#include <stdio.h>
+
+{
+    int i = 0;
+
+    // let's make our own array of strings
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    int num_states = 4;
+
+    for (; ;) {
+        if (i >= num_states) {
+            break;
+        }
+
+        printf("state %d: %s\n", i, states[i]);
+
+        i++;
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex10
+state 0: California
+state 1: Oregon
+state 2: Washington
+state 3: Texas
+```
+### Look up how to use the ',' (comma) character to separate multiple statements in the parts of the for-loop, but between the ';' (semicolon) characters.
+Here is an example:
+```c
+#include <stdio.h>
+
+int main (int argc, char *argv[])
+{
+    int i = 0;
+
+    // let's make our own array of strings
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    int num_states = 0;
+
+    for (i = 0, num_states = 4; i < num_states; i++) {
+        printf("state %d: %s\n", i, states[i]);
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex10
+state 0: California
+state 1: Oregon
+state 2: Washington
+state 3: Texas
+```
+### Read what a NULL is and try to use it in one of the elements of the states array to see what it'll print.
