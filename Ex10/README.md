@@ -142,3 +142,112 @@ state 2: Washington
 state 3: Texas
 ```
 ### Read what a NULL is and try to use it in one of the elements of the states array to see what it'll print.
+NULL is a macro, defined in as a null pointer constant.
+
+I set the last element in states array to `NULL`, and it printed `(null)`.
+```c
+#include <stdio.h>
+
+int main (int argc, char *argv[])
+{
+    int i = 0;
+
+    // let's make our own array of strings
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", NULL
+    };
+
+    int num_states = 4;
+
+    for (i = 0; i < num_states; i++) {
+        printf("state %d: %s\n", i, states[i]);
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex10
+state 0: California
+state 1: Oregon
+state 2: Washington
+state 3: (null)
+```
+### See if you can assign an element from the states array to the argv array before printing both. Try the inverse.
+Set an element from the states array to the argv array:
+```c
+#include <stdio.h>
+
+int main (int argc, char *argv[])
+{
+    int i = 0;
+
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    argv[1] = states[1];
+
+    // go through each string in argv
+    // why am I skipping argv[0]?
+    for (i = 1; i < argc; i++) {
+        printf("arg %d: %s\n", i, argv[i]);
+    }
+
+    int num_states = 4;
+
+    for (i = 0; i < num_states; i++) {
+        printf("state %d: %s\n", i, states[i]);
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex10 hello
+arg 1: Oregon
+state 0: California
+state 1: Oregon
+state 2: Washington
+state 3: Texas
+```
+Set an element from the argv array to the states array:
+```c
+#include <stdio.h>
+
+int main (int argc, char *argv[])
+{
+    int i = 0;
+
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    states[0] = argv[1];
+
+    // go through each string in argv
+    // why am I skipping argv[0]?
+    for (i = 1; i < argc; i++) {
+        printf("arg %d: %s\n", i, argv[i]);
+    }
+
+    int num_states = 4;
+
+    for (i = 0; i < num_states; i++) {
+        printf("state %d: %s\n", i, states[i]);
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex10 hello
+arg 1: hello
+state 0: hello
+state 1: Oregon
+state 2: Washington
+state 3: Texas
+```
