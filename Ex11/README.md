@@ -149,3 +149,156 @@ arg 0: ./ex11
 
 Infinite loop.
 ```
+## Extra Credit
+### Make these loops count backward by using i-- to start at argc and count down to 0. You may have to do some math to make the array indexes work right.
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    // go through each string in argv
+
+    int i = argc - 1;
+    while (i >= 0) {
+        printf("arg %d: %s\n", i, argv[i]);
+        i--;
+    }
+
+    // let's make our own array of strings
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    int num_states = 4;
+
+    // watch for this
+    i = num_states - 1;
+    while (i >= 0) {
+        printf("state %d: %s\n", i, states[i]);
+        i--;
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex11 a b c
+arg 3: c
+arg 2: b
+arg 1: a
+arg 0: ./ex11
+state 3: Texas
+state 2: Washington
+state 1: Oregon
+state 0: California
+```
+### Use a while loop to copy the values from argv into states.
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    // go through each string in argv
+
+    int i = 0;
+    while (i < argc) {
+        printf("arg %d: %s\n", i, argv[i]);
+        i++;
+    }
+
+    // let's make our own array of strings
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    int num_states = 4;
+
+    i = 0;
+    while (i < argc) {
+        states[i] = argv[i];
+        i++;
+    }
+
+    // watch for this
+    i = 0;
+    while (i < num_states) {
+        printf("state %d: %s\n", i, states[i]);
+        i++;
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex11
+arg 0: ./ex11
+state 0: ./ex11
+state 1: Oregon
+state 2: Washington
+state 3: Texas
+
+$ ./ex11 a b c d
+arg 0: ./ex11
+arg 1: a
+arg 2: b
+arg 3: c
+arg 4: d
+state 0: ./ex11
+state 1: a
+state 2: b
+state 3: c
+```
+### Make this copy loop never fail such that if there's too many argv elements it won't put them all into states.
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    // go through each string in argv
+
+    int i = 0;
+    while (i < argc) {
+        printf("arg %d: %s\n", i, argv[i]);
+        i++;
+    }
+
+    // let's make our own array of strings
+    char *states[] = {
+        "California", "Oregon",
+        "Washington", "Texas"
+    };
+
+    int num_states = 4;
+
+    i = 0;
+    int count = num_states > argc ? argc : num_states;
+    while (i < count) {
+        states[i] = argv[i];
+        i++;
+    }
+
+    // watch for this
+    i = 0;
+    while (i < num_states) {
+        printf("state %d: %s\n", i, states[i]);
+        i++;
+    }
+
+    return 0;
+}
+```
+```
+$ ./ex11 a b c d
+arg 0: ./ex11
+arg 1: a
+arg 2: b
+arg 3: c
+arg 4: d
+state 0: ./ex11
+state 1: a
+state 2: b
+state 3: c
+```
+### Research if you've really copied these strings. The answer may surprise and confuse you though.
