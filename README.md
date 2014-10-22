@@ -11,3 +11,4 @@
 * [Exercise 9: Arrays And Strings](Ex9)
 * [Exercise 10: Arrays Of Strings, Looping](Ex10)
 * [Exercise 11: While-Loop And Boolean Expressions](Ex11)
+* [Exercise 12: If, Else-If, Else](Ex12)
