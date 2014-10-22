@@ -302,3 +302,4 @@ state 2: b
 state 3: c
 ```
 ### Research if you've really copied these strings. The answer may surprise and confuse you though.
+No, it didn't copied strings, it made the pointers in `*states[]` point to different string in memory.  ([Link](http://stackoverflow.com/questions/9471485/where-is-an-array-of-character-pointers-stored-in-memory)) 
