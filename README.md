@@ -1,4 +1,5 @@
 # Learn C The Hard Way
+My learning progress of this [book](http://c.learncodethehardway.org/book/).
 
 * [Exercise 1: Dust Off That Compiler](Ex1)
 * [Exercise 2: Make Is Your Python Now](Ex2)
