@@ -41,10 +41,9 @@ int main(int argc, char *argv[])
 }
 ```
 ```
-$ make ex14
 cc -Wall -g    ex14.c   -o ex14
 ex14.c: In function ‘print_arguments’:
-ex14.c:9:9: warning: implicit declaration of function ‘print_letters’ [-Wimplici                                                                                                                                                             t-function-declaration]
+ex14.c:9:9: warning: implicit declaration of function ‘print_letters’ [-Wimplicit-function-declaration]
          print_letters(argv[i]);
          ^
 ex14.c: At top level:
@@ -55,14 +54,14 @@ ex14.c:9:9: note: previous implicit declaration of ‘print_letters’ was here
          print_letters(argv[i]);
          ^
 ex14.c: In function ‘print_letters’:
-ex14.c:20:9: warning: implicit declaration of function ‘can_print_it’ [-Wimplici                                                                                                                                                             t-function-declaration]
+ex14.c:20:9: warning: implicit declaration of function ‘can_print_it’ [-Wimplicit-function-declaration]
          if (can_print_it(ch)) {
          ^
 ex14.c: At top level:
 ex14.c:28:5: error: conflicting types for ‘can_print_it’
  int can_print_it(char ch)
      ^
-ex14.c:29:1: note: an argument type that has a default promotion can’t match an                                                                                                                                                              empty parameter name list declaration
+ex14.c:29:1: note: an argument type that has a default promotion can’t match an empty parameter name list declaration
  {
  ^
 ex14.c:20:13: note: previous implicit declaration of ‘can_print_it’ was here
