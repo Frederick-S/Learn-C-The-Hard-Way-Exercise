@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 }
 ```
 ```
+$ make ex14
 cc -Wall -g    ex14.c   -o ex14
 ex14.c: In function ‘print_arguments’:
 ex14.c:9:9: warning: implicit declaration of function ‘print_letters’ [-Wimplicit-function-declaration]
