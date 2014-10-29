@@ -14,3 +14,4 @@ My learning progress of this [book](http://c.learncodethehardway.org/book/).
 * [Exercise 11: While-Loop And Boolean Expressions](Ex11)
 * [Exercise 12: If, Else-If, Else](Ex12)
 * [Exercise 13: Switch Statement](Ex13)
+* [Exercise 14: Writing And Using Functions](Ex14)
