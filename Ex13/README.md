@@ -382,6 +382,7 @@ $ ./ex13 "Zed Shaw"
 
 ### In the case for 'Y' I have the break outside the if-statement. What's the impact of this and what happens if you move it inside the if-statement. Prove to yourself that you're right.
 If the break is outside the if-statement, then it can correctly end the switch-statement, otherwise, it will continue executing the code in `default` branch under some conditions.
+
 break outside the if-statement:
 ```
 $ ./ex13 you
