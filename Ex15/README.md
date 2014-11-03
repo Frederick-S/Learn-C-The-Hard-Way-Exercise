@@ -234,3 +234,78 @@ Alan lived 23 years so far.
 
 ## Extra Credit
 ### Rewrite all the array usage in this program so that it's pointers.
+```c
+for (i = 0; i < count; i++) {
+    printf("%s has %d years alive.\n", *(names + i), *(ages + i));
+}
+```
+
+### Rewrite all the pointer usage so they're arrays.
+I don't quite get it, it's already include in the original code.
+
+### Go back to some of the other programs that use arrays and try to use pointers instead.
+Rewrite exercise 9:
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    int numbers[4] = {0};
+    char name[4] = {'a'};
+
+    int *pointerNumbers = numbers;
+    char *pointerName = name;
+    
+    // first, print them out raw
+    printf("numbers: %d %d %d %d\n", *pointerNumbers, *(pointerNumbers + 1), *(pointerNumbers + 2), *(pointerNumbers + 3));
+
+    printf("name each: %c %c %c %c\n", *pointerName, *(pointerName + 1), *(pointerName + 2), *(pointerName + 3));
+
+    printf("name: %s\n", pointerName);
+
+    // setup the numbers
+    *pointerNumbers = 1;
+    *(pointerNumbers + 1) = 2;
+    *(pointerNumbers + 2) = 3;
+    *(pointerNumbers + 3) = 4;
+
+    // setup the name
+    *pointerName = 'Z';
+    *(pointerName + 1) = 'e';
+    *(pointerName + 2) = 'd';
+    *(pointerName + 3) = '\0';
+
+    // then print them out initialized
+    printf("numbers: %d %d %d %d\n", *pointerNumbers, *(pointerNumbers + 1), *(pointerNumbers + 2), *(pointerNumbers + 3));
+
+    printf("name each: %c %c %c %c\n", *pointerName, *(pointerName + 1), *(pointerName + 2), *(pointerName + 3));
+
+    // print the name like a string
+    printf("name: %s\n", pointerName);
+
+    // another way to use name
+    char *another = "Zed";
+   
+    printf("another: %s\n", another);
+
+    printf("another each: %c %c %c %c\n", another[0], another[1], another[2], another[3]);
+
+    return 0;
+}
+```
+```
+$ ./ex9
+numbers: 0 0 0 0
+name each: a
+name: a
+numbers: 1 2 3 4
+name each: Z e d
+name: Zed
+another: Zed
+another each: Z e d
+```
+
+### Process command line arguments using just pointers similar to how you did names in this one.
+```c
+
+```
