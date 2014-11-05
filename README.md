@@ -16,3 +16,4 @@ My learning progress of this [book](http://c.learncodethehardway.org/book/).
 * [Exercise 13: Switch Statement](Ex13)
 * [Exercise 14: Writing And Using Functions](Ex14)
 * [Exercise 15: Pointers Dreaded Pointers](Ex15)
+* [Exercise 16: Structs And Pointers To Them](Ex16)
