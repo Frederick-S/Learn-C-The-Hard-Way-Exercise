@@ -185,3 +185,139 @@ Segmentation fault (core dumped)
 
 ## Extra Credit
 ### How to create a struct on the stack, which means just like you've been making any other variable.
+```c
+#include <stdio.h>
+
+struct Person {
+    char *name;
+    int age;
+    int height;
+    int weight;
+};
+
+int main(int argc, char *argv[])
+{
+    struct Person who = { "Joe Alex", 32, 64, 140 };
+    
+    printf("Name: %s\n", who.name);
+    printf("\tAge: %d\n", who.age);
+    printf("\tHeight: %d\n", who.height);
+    printf("\tWeight: %d\n", who.weight);
+    
+    return 0;
+}
+```
+```
+$ ./ex16
+Name: Joe Alex
+        Age: 32
+        Height: 64
+        Weight: 140
+```
+
+### How to initialize it using the x.y (period) character instead of the x->y syntax.
+```c
+#include <stdio.h>
+
+struct Person {
+    char *name;
+    int age;
+    int height;
+    int weight;
+};
+
+int main(int argc, char *argv[])
+{
+    struct Person who = { .name = "Joe Alex", .age = 32, .height = 64, .weight = 140 };
+    
+    printf("Name: %s\n", who.name);
+    printf("\tAge: %d\n", who.age);
+    printf("\tHeight: %d\n", who.height);
+    printf("\tWeight: %d\n", who.weight);
+    
+    return 0;
+}
+```
+```
+$ ./ex16
+Name: Joe Alex
+        Age: 32
+        Height: 64
+        Weight: 140
+```
+
+### How to pass a structure to other functions without using a pointer.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Person {
+    char *name;
+    int age;
+    int height;
+    int weight;
+};
+
+struct Person Person_create(char *name, int age, int height, int weight)
+{
+    struct Person who = { .name = name, .age = age, .height = height, .weight = weight };
+    
+    return who;
+}
+
+void Person_print(struct Person who)
+{
+    printf("Name: %s\n", who.name);
+    printf("\tAge: %d\n", who.age);
+    printf("\tHeight: %d\n", who.height);
+    printf("\tWeight: %d\n", who.weight);
+}
+
+int main(int argc, char *argv[])
+{
+    // make two people structures
+    struct Person joe = Person_create("Joe Alex", 32, 64, 140);
+    struct Person frank = Person_create("Frank Blank", 20, 72, 180);
+    
+    // print them out and where they are in memory
+    printf("Joe is at memory location %p:\n", (void*)&joe);
+    Person_print(joe);
+    
+    printf("Frank is at memory location %p:\n", (void*)&frank);
+    Person_print(frank);
+    
+    // make everyone age 20 years and print them again
+    joe.age += 20;
+    joe.height -= 2;
+    joe.weight += 40;
+    Person_print(joe);
+    
+    frank.age += 20;
+    frank.weight += 20;
+    Person_print(frank);
+    
+    return 0;
+}
+```
+```
+$ ./ex16
+Joe is at memory location 0x7fff98af30c0:
+Name: Joe Alex
+        Age: 32
+        Height: 64
+        Weight: 140
+Frank is at memory location 0x7fff98af30e0:
+Name: Frank Blank
+        Age: 20
+        Height: 72
+        Weight: 180
+Name: Joe Alex
+        Age: 52
+        Height: 62
+        Weight: 180
+Name: Frank Blank
+        Age: 40
+        Height: 72
+        Weight: 200
+```
