@@ -55,3 +55,39 @@ $ ./ex17 db.dat l
 ```
 
 Unexpected thing happened, the email address is appened to name.
+
+Change the code to force the last character to '\0':
+```c
+void Database_set(struct Connection *conn, int id, const char *name, const char *email)
+{
+    struct Address *addr = &conn->db->rows[id];
+    
+    if (addr->set) {
+        die("Already set, delete it first");
+    }
+    
+    addr->set = 1;
+    
+    // WARNING: bug, read the "How To Break It“ and fix this
+    char *res = strncpy(addr->name, name, MAX_DATA);
+    addr->name[MAX_DATA - 1] = '\0';
+    
+    // demonstrate the strncpy bug
+    if (!res) {
+        die("Name copy failed");
+    }
+    
+    res = strncpy(addr->email, email, MAX_DATA);
+    addr->email[MAX_DATA - 1] = '\0';
+    
+    if (!res) {
+        die("Email copy failed");
+    }
+}
+```
+```
+$ ./ex17 db.dat c
+$ python set_long_name.py
+$ ./ex17 db.dat l
+1 abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopq zed@zedshaw.com
+```
