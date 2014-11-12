@@ -27,7 +27,7 @@ ERROR: Failed to load database.
 ```
 $ ./ex17 c db.dat
 Failed to open the file: No such file or directory
+```
 
 ### There is a bug in this program because of strncpy being poorly designed. Go read about strncpy then try to find out what happens when the name or address you give is greater than 512 bytes. Fix this by simply forcing the last character to '\0' so that it's always set no matter what (which is what strncpy should do).
 
-```
