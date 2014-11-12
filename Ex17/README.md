@@ -30,4 +30,28 @@ Failed to open the file: No such file or directory
 ```
 
 ### There is a bug in this program because of strncpy being poorly designed. Go read about strncpy then try to find out what happens when the name or address you give is greater than 512 bytes. Fix this by simply forcing the last character to '\0' so that it's always set no matter what (which is what strncpy should do).
+Create a python script to set long name:
+```py
+#!/usr/bin/env python
 
+from subprocess import call
+
+try:
+    f = open('long-string.txt', 'r')
+    name = f.read();
+    arguments = ['./ex17', 'db.dat', 's', '1', name, 'zed@zedshaw.com'];
+    
+    call(arguments);
+except Exception, e:
+    print e
+```
+
+Set name that is greater than 512 bytes:
+```
+$ ./ex17 db.dat c
+$ python set_long_name.py
+$ ./ex17 db.dat l
+1 abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrzed@zedshaw.com zed@zedshaw.com
+```
+
+Unexpected thing happened, the email address is appened to name.
