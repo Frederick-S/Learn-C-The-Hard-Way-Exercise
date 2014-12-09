@@ -345,6 +345,6 @@ int main(int argc, char *argv[])
 ```
 
 ### Change the code to accept parameters for MAX_DATA and MAX_ROWS, store them in the Database struct, and write that to the file, thus creating a database that can be arbitrarily sized.
-```c
+[Reference](http://pastebin.com/MvLXkDCz).
 
-```
+### Add more operations you can do on the database, like find.
