@@ -160,6 +160,20 @@ void Database_get(struct Connection *conn, int id)
     }
 }
 
+void Database_find_by_name(struct Connection *conn, char *name)
+{
+    int i = 0;
+    struct Database *db = conn->db;
+    
+    for (i = 0; i < MAX_ROWS; i++) {
+        struct Address *cur = &db->rows[i];
+
+        if (strcmp(cur->name, name) == 0 && cur->set) {
+            Address_print(cur);
+        }
+    }
+}
+
 void Database_delete(struct Connection *conn, int id)
 {
     struct Address addr = { .id = id, .set = 0 };
@@ -190,9 +204,16 @@ int main(int argc, char *argv[])
     char action = argv[2][0];
     struct Connection *conn = Database_open(filename, action);
     int id = 0;
+    char *attribute;
+    char *value;
     
-    if (argc > 3) {
+    if (argc > 3 && argc != 5) {
         id = atoi(argv[3]);
+    }
+    
+    if (argc == 5) {
+        attribute = argv[3];
+        value = argv[4];
     }
     
     if (id >= MAX_ROWS) {
@@ -210,6 +231,16 @@ int main(int argc, char *argv[])
             }
             
             Database_get(conn, id);
+            break;
+        case 'f':
+            if (argc != 5) {
+                die("Need attribute and value to find");
+            }
+
+            if (strcmp(attribute, "name") == 0) {
+                Database_find_by_name(conn, value);
+            }
+            
             break;
         case 's':
             if (argc != 6) {
