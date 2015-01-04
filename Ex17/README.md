@@ -646,3 +646,37 @@ $ ./ex17 db.dat f name zed
 $ ./ex17 db.dat f email zed@zedshaw.com
 1 zed zed@zedshaw.com
 ```
+
+### Read about how C does it's struct packing, and then try to see why your file is the size it is. See if you can calculate a new size after adding more fields.
+[Reference](http://vcfaq.mvps.org/lang/11.htm).
+
+The size of `Address` on my 64-bit Ubuntu is 1032. `id` and `set` are both 4 bytes, they are well aligned. The size of `char` is 1 byte, so `name` and `email` are naturally aligned, so the total size is 4 + 4 + 1 * 512 + 1 * 512 = 1032 so far. The largest alignment in `Address` is 4, and 1032 is multiple of 4, so it's not necessary to pad dummy bytes to the end of `Address`.
+
+Now let's change `Address`:
+```c
+#define MAX_DATA 513
+
+struct Address {
+    int id;
+    int set;
+    char name[MAX_DATA];
+    char email[MAX_DATA];
+};
+```
+The size of `Address` is 1036. Because the total size becomes to 4 + 4 + 1 * 513 + 1 * 513 = 1034, and 1034 is not multiple of 4, if `Address` is in an Array, `id` in the second `Address` will not be aligned. So it adds 2 bytes to the end to prevent this.
+
+And another example:
+```c
+#define MAX_DATA 512
+
+struct Address {
+    int id;
+    char sex;
+    int set;
+    long age;
+    char name[MAX_DATA];
+    char email[MAX_DATA];
+};
+```
+
+The size is 1048. `id` is 4 bytes and well aligned, `char` is 1 byte and also aligned, but `set` should also be aligned, so it adds 3 bytes after `sex` to make `set` aligned, and in order to make `age` aligned, it also adds 4 bytes after `set`. `name` and `email` are both aligned. Now the size is 4 + 4(1 + 3) + 8 (4 + 4) + 8 + 1 * 512 + 1* 512 = 1048. 1048 is multiple of 8, so the real size is 1048. 
