@@ -1,9 +1,11 @@
 #!/bin/bash
+set -e
+
 echo "Creating database ..."
 ./ex17 db.dat c
 echo ""
 
-echo "Saving records to database ..."
+echo "Saving zed, frank, joe to database ..."
 ./ex17 db.dat s 1 zed zed@zedshaw.com
 ./ex17 db.dat s 2 frank frank@zedshaw.com
 ./ex17 db.dat s 3 joe joe@zedshaw.com
