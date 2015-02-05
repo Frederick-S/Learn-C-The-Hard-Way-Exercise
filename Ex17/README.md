@@ -1314,3 +1314,43 @@ int main(int argc, char *argv[])
 }
 ```
 It's not a good practice, which makes the function like `Database_set`, `Database_get` not reusable.
+
+### Go research "stack data structure" and write one in your favorite language, then try to do it in C.
+Implementation in Python:
+```py
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+class Stack:
+    def __init__(self):
+        self.nodes = []
+    
+    def push(self, value):
+        self.nodes.append(value)
+    
+    def pop(self):
+        return self.nodes.pop()
+    
+    def is_empty(self):
+        return self.size() == 0
+    
+    def size(self):
+        return len(self.nodes)
+```
+
+Test:
+```py
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+
+while not stack.is_empty():
+    print stack.pop()
+    
+=>
+3
+2
+1
+```
+
