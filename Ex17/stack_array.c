@@ -49,9 +49,24 @@ int pop(struct Stack *stack)
     return 0;
 }
 
+void free_stack(struct Stack *stack)
+{
+    if (stack) {
+        free(stack);
+    }
+}
+
 int main(int argc, char *argv[])
 {
     struct Stack *stack = new();
+    
+    push(stack, 1);
+    push(stack, 2);
+    push(stack, 3);
+    
+    printf("%d\n", pop(stack));
+    
+    free_stack(stack);
     
     return 0;
 }
