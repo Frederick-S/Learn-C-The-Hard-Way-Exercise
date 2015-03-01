@@ -60,11 +60,15 @@ int main(int argc, char *argv[])
 {
     struct Stack *stack = new();
     
-    push(stack, 1);
-    push(stack, 2);
-    push(stack, 3);
+    int i = 0;
     
-    printf("%d\n", pop(stack));
+    for (i = 0; i < 10; i++) {
+        push(stack, i);
+    }
+    
+    for (i = 0; i < 10; i++) {
+        printf("%d\n", pop(stack));
+    }
     
     free_stack(stack);
     

@@ -70,11 +70,11 @@ int main(int argc, char *argv[])
     
     int i = 0;
     
-    for (i = 1; i <= 10; i++) {
+    for (i = 0; i < 10; i++) {
         push(stack, i);
     }
     
-    for (i = 1; i <= 10; i++) {
+    for (i = 0; i < 10; i++) {
         printf("%d\n", pop(stack));
     }
     
