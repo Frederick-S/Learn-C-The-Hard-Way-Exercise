@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#define MAX_DATA 100
+struct Node {
+    int value;
+    struct Node *next;
+};
 
 struct Stack {
-    int nodes[MAX_DATA];
+    struct Node *head;
     int size;
 };
 
@@ -25,7 +28,7 @@ void die(const char *message)
 struct Stack *new()
 {
     struct Stack *stack = malloc(sizeof(struct Stack));
-    
+    stack->head = NULL;
     stack->size = 0;
     
     return stack;
@@ -33,23 +36,30 @@ struct Stack *new()
 
 void push(struct Stack *stack, int value)
 {
-    if (stack->size < MAX_DATA) {
-        stack->nodes[stack->size++] = value;
-    } else {
-        free_stack(stack);
-        
-        die("Stack is full!");
-    }
+    struct Node *old_head = stack->head;
+    
+    stack->head = malloc(sizeof(struct Node));
+    stack->head->value = value;
+    stack->head->next = old_head;
+    stack->size++;
 }
 
 int pop(struct Stack *stack) 
 {
-    if (stack->size > 0) {
-        return stack->nodes[--stack->size];
-    } else {
+    if (stack->size == 0) {
         free_stack(stack);
         
         die("Stack is empty!");
+    } else {
+        struct Node *new_head = stack->head->next;
+        int value = stack->head->value;
+        
+        free(stack->head);
+        
+        stack->head = new_head;
+        stack->size--;
+        
+        return value;
     }
     
     return 0;
@@ -58,6 +68,21 @@ int pop(struct Stack *stack)
 void free_stack(struct Stack *stack)
 {
     if (stack) {
+        struct Node *head = stack->head;
+        
+        if (head) {
+            struct Node *next = head->next;
+            
+            while (next) {
+                free(head);
+                
+                head = next;
+                next = next->next;
+            }
+            
+            free(head);
+        }
+        
         free(stack);
     }
 }

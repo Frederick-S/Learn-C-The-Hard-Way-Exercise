@@ -1,11 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 struct Stack {
     int *nodes;
     int size;
     int capacity;
 };
+
+void free_stack(struct Stack *stack);
+
+void die(const char *message)
+{
+    if (errno) {
+        perror(message);
+    } else {
+        printf("ERROR: %s\n", message);
+    }
+    
+    exit(1);
+}
 
 struct Stack *new()
 {
@@ -44,13 +58,21 @@ void push(struct Stack *stack, int value)
 
 int pop(struct Stack *stack) 
 {
-    int value = stack->nodes[--stack->size];
-    
-    if (stack->size > 0 && stack->size == stack->capacity / 4) {
-        resize(stack, stack->capacity / 2);
+    if (stack->size == 0) {
+        free_stack(stack);
+        
+        die("Stack is empty!");
+    } else {
+        int value = stack->nodes[--stack->size];
+        
+        if (stack->size > 0 && stack->size == stack->capacity / 4) {
+            resize(stack, stack->capacity / 2);
+        }
+        
+        return value;
     }
     
-    return value;
+    return 0;
 }
 
 void free_stack(struct Stack *stack)
@@ -67,7 +89,7 @@ void free_stack(struct Stack *stack)
 int main(int argc, char *argv[])
 {
     struct Stack *stack = new();
-    
+
     int i = 0;
     
     for (i = 0; i < 10; i++) {
@@ -77,7 +99,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < 10; i++) {
         printf("%d\n", pop(stack));
     }
-    
+
     free_stack(stack);
     
     return 0;
