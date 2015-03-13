@@ -18,3 +18,4 @@ My learning progress of this [book](http://c.learncodethehardway.org/book/).
 * [Exercise 15: Pointers Dreaded Pointers](Ex15)
 * [Exercise 16: Structs And Pointers To Them](Ex16)
 * [Exercise 17: Heap And Stack Memory Allocation](Ex17)
+* [Exercise 18: Pointers To Functions](Ex18)
