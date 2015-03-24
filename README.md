@@ -19,3 +19,4 @@ My learning progress of this [book](http://c.learncodethehardway.org/book/).
 * [Exercise 16: Structs And Pointers To Them](Ex16)
 * [Exercise 17: Heap And Stack Memory Allocation](Ex17)
 * [Exercise 18: Pointers To Functions](Ex18)
+* [Exercise 19: A Simple Object System](Ex19)
