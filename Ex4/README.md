@@ -18,7 +18,7 @@ I ran into some errors when I ran `./configure`:
     configure: error: Valgrind requires glibc version 2.2 - 2.17
     ```
   
-    After Google, I found a solution [here](http://stackoverflow.com/questions/10518734/valgrind-doesnt-accept-newest-version-of-glibc), add the following code in `configure` file (before the line with `darwin)`):
+    After Google, I found a solution [here](http://stackoverflow.com/questions/10518734/valgrind-doesnt-accept-newest-version-of-glibc), add the following code in `configure` file (find similar code in `configure` file first):
 
     ```
      2.19)
